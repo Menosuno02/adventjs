@@ -1,14 +1,17 @@
 def draw_race(indices, length):
-    lanes = []
-    for i, pos in enumerate(indices, 1):
-        spaces = " " * (len(indices) - i)
-        lane = list("~" * length)
+    result = ""
+    num_lanes = len(indices)
 
-        if pos:
-            pos = pos if pos > 0 else length + pos
-            if 0 <= pos < length:
-                lane[pos] = "r"
+    for i in range(1, num_lanes + 1):
+        spaces = " " * (num_lanes - i)
+        lane = "~" * length
 
-        lanes.append(f"{spaces}{''.join(lane)} /{i}")
+        if indices[i - 1] != 0:
+            pos = indices[i - 1] if indices[i - 1] > 0 else length + indices[i - 1]
+            lane = lane[:pos] + "r" + lane[pos + 1 :]
 
-    return "\n".join(lanes)
+        result += f"{spaces}{lane} /{i}"
+        if i < num_lanes:
+            result += "\n"
+
+    return result
