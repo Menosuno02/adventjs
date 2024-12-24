@@ -1,9 +1,8 @@
 function findMissingNumbers(nums: number[]): number[] {
-  const set = new Set(nums);
-  const max = Math.max(...nums);
-  const m: number[] = [];
-  for (let i = 1; i < max; i++) {
-    if (!numSet.has(i)) m.push(i);
-  }
-  return m;
+  const uniqueNums = new Set(nums);
+  const collection = new Set();
+  for (let i = 1; i < Math.max(...uniqueNums); i++) collection.add(i);
+
+  const missingNums = [...collection.difference(uniqueNums)];
+  return missingNums;
 }
